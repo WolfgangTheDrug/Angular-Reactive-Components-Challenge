@@ -1,0 +1,15 @@
+<ul class="list-group">
+  @for( user of USERS(); track user.id) {
+    <li class="list-group-item d-flex justify-content-between align-items-center" [id]="user.id">
+      <span>{{ user.name.firstname }} {{ user.name.lastname }} | {{ user.email }} </span>
+      <button
+        class="me-1"
+        [ngClass]="{
+            'btn': true,
+            'btn-outline-dark': sortOrder() == 'desc'
+          }"
+      >Show
+      </button>
+    </li>
+  }
+</ul>

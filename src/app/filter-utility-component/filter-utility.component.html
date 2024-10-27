@@ -1,0 +1,52 @@
+<div class="py-1">
+  <span>Sort by </span>
+  <button
+    id="email-toggle"
+    class="me-1"
+    (click)="sort('asc')"
+    [ngClass]="{
+              'btn': true,
+              'btn-dark': sortOrder() === 'asc',
+              'btn-outline-dark': sortOrder() === 'desc'
+            }"
+  >Email
+  </button>
+  <button
+    id="lastname-toggle"
+    class="me-1"
+    (click)="sort('asc')"
+    [ngClass]="{
+              'btn': true,
+              'btn-dark': sortOrder() === 'desc',
+              'btn-outline-dark': sortOrder() == 'asc'
+            }"
+  >Lastname
+  </button>
+  <span>Order </span>
+  <button
+    id="asc-toggle"
+    class="me-1"
+    (click)="sort('asc')"
+    [ngClass]="{
+              'btn': true,
+              'btn-dark': sortOrder() === 'asc',
+              'btn-outline-dark': sortOrder() === 'desc'
+            }"
+  >ASC
+  </button>
+  <button
+    id="desc-toggle"
+    class="me-1"
+    (click)="sort('asc')"
+    [ngClass]="{
+              'btn': true,
+              'btn-dark': sortOrder() === 'desc',
+              'btn-outline-dark': sortOrder() == 'asc'
+            }"
+  >DESC
+  </button>
+</div>
+<div class="input-group py-1">
+  <input type="text" class="form-control" placeholder="Filter by email..." aria-label="Filter by email"
+         aria-describedby="basic-addon1">
+</div>
