@@ -24,9 +24,11 @@
     <div class="col-sm">
       <users-list></users-list>
     </div>
-    <div class="col-sm">
-      <detail></detail>
-    </div>
+    @if(SELECTED_USER_SERVICE.getUser()) {
+      <div class="col-sm">
+        <detail></detail>
+      </div>
+    }
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

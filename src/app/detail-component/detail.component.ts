@@ -1,6 +1,8 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, inject, Input, Output} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {NgClass} from "@angular/common";
+import {UserModel} from "../users-list-component/user.model";
+import {SelectedUserService} from "../users-list-component/selected-user.service";
 
 @Component({
   selector: 'detail',
@@ -10,10 +12,21 @@ import {NgClass} from "@angular/common";
 })
 
 export class DetailComponent {
-  name: string = '';
-  email: string = '';
+  readonly SELECTED_USER_SERVICE: SelectedUserService = inject(SelectedUserService);
 
-  hide() {
+  setUserDetails() {
+    const fullName: string = this.SELECTED_USER_SERVICE.userIsSelected
+      ? `${ this.SELECTED_USER_SERVICE.selectedUser!.name.firstname } ${ this.SELECTED_USER_SERVICE.selectedUser!.name.lastname }`
+      : '';
+    const email: string = this.SELECTED_USER_SERVICE.userIsSelected
+      ? this.SELECTED_USER_SERVICE.selectedUser!.email
+      : '';
 
+    return [fullName, email];
+  }
+
+
+  hideUser() {
+    this.SELECTED_USER_SERVICE.setUser( null );
   }
 }

@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">{{ name }}</h5>
-    <p>Email: {{ email }}</p>
+    <h5 class="card-title">{{ setUserDetails()[0] }}</h5>
+    <p>Email: {{ setUserDetails()[1] }}</p>
     <button
       id="email-toggle"
       class="me-1 btn btn-danger"
-      (click)="hide()"
+      (click)="hideUser()"
     >Hide</button>
   </div>
 </div>
