@@ -1,4 +1,4 @@
-import {Component, computed, EventEmitter, inject, Input, Output, Signal} from "@angular/core";
+import {Component, computed, inject, Signal} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {NgClass} from "@angular/common";
 import {UsersListService} from "./users-list.service";

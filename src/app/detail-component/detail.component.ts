@@ -1,7 +1,6 @@
-import {Component, EventEmitter, inject, Input, Output} from "@angular/core";
+import {Component, inject} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {NgClass} from "@angular/common";
-import {UserModel} from "../users-list-component/user.model";
 import {SelectedUserService} from "../users-list-component/selected-user.service";
 
 @Component({

@@ -2,7 +2,6 @@ import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserModel} from "./user.model";
-import {UserDTOModel} from "./user-DTO";
 
 @Injectable({providedIn: 'root'})
 export class UsersListService {
