@@ -24,7 +24,7 @@
     <div class="col-sm">
       <users-list></users-list>
     </div>
-    @if(SELECTED_USER_SERVICE.getUser()) {
+    @if(selectedUserService.selectedUser()) {
       <div class="col-sm">
         <detail></detail>
       </div>

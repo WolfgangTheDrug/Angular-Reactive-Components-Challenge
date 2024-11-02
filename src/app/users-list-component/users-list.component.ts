@@ -14,23 +14,23 @@ import {SelectedUserService} from "./selected-user.service";
 })
 
 export class UsersListComponent {
-  readonly USERS_LIST_SERVICE: UsersListService = inject(UsersListService);
-  readonly SELECTED_USER_SERVICE: SelectedUserService = inject(SelectedUserService);
-  readonly USERS: Signal<UserModel[]> = toSignal(
-    this.USERS_LIST_SERVICE.getAll(),
+  readonly usersListService: UsersListService = inject(UsersListService);
+  readonly SelectedUserService: SelectedUserService = inject(SelectedUserService);
+  readonly users: Signal<UserModel[]> = toSignal(
+    this.usersListService.getAll(),
     {initialValue: []}
   )
 
   toggleDetails( user: UserModel ) {
-    if(this.SELECTED_USER_SERVICE.userIsSelected === null || this.SELECTED_USER_SERVICE.selectedUsersId !== user.id ){
-      this.SELECTED_USER_SERVICE.setUser( user );
+    if(this.SelectedUserService.userIsSelected === null || this.SelectedUserService.selectedUserId() !== user.id ){
+      this.SelectedUserService.selectedUser.set( user );
     } else {
-      this.SELECTED_USER_SERVICE.setUser( null );
+      this.SelectedUserService.selectedUser.set( null );
     }
   }
 
   readonly VISIBLE_USERS: Signal<UserModel[]> = computed(() => {
-    return this.USERS()
+    return this.users()
   });
 
   sortOrder(): string {

@@ -14,5 +14,5 @@ import {SelectedUserService} from "./users-list-component/selected-user.service"
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  readonly SELECTED_USER_SERVICE: SelectedUserService = inject(SelectedUserService);
+  readonly selectedUserService: SelectedUserService = inject(SelectedUserService);
 }

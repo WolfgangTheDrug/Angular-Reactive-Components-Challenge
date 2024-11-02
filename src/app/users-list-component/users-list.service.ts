@@ -5,11 +5,11 @@ import {UserModel} from "./user.model";
 
 @Injectable({providedIn: 'root'})
 export class UsersListService {
-  private readonly API_URL: string = 'https://fakestoreapi.com/users';
-  private readonly HTTP_CLIENT: HttpClient = inject(HttpClient);
+  private readonly apiUrl: string = 'https://fakestoreapi.com/users';
+  private readonly httpClient: HttpClient = inject(HttpClient);
 
 
   getAll(): Observable<UserModel[]> {
-    return this.HTTP_CLIENT.get<UserModel[]>(this.API_URL)
+    return this.httpClient.get<UserModel[]>(this.apiUrl)
   }
 }

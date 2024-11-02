@@ -1,12 +1,12 @@
 <ul class="list-group">
-  @for( user of USERS(); track user.id) {
+  @for( user of users(); track user.id) {
     <li class="list-group-item d-flex justify-content-between align-items-center" [id]="user.id">
       <span>{{ user.name.firstname }} {{ user.name.lastname }} | {{ user.email }} </span>
       <button
         class="me-1 btn"
-        [ngClass]="'btn-outline-'+(user.id === this.SELECTED_USER_SERVICE.selectedUsersId ? 'danger' : 'dark')"
+        [ngClass]="'btn-outline-'+(user.id === this.SelectedUserService.selectedUserId() ? 'danger' : 'dark')"
         (click)="toggleDetails( user )"
-      >{{ user.id === this.SELECTED_USER_SERVICE.selectedUsersId ? 'Hide' : 'Show' }}
+      >{{ user.id === this.SelectedUserService.selectedUserId() ? 'Hide' : 'Show' }}
       </button>
     </li>
   }

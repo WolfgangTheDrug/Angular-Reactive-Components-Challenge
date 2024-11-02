@@ -11,14 +11,14 @@ import {SelectedUserService} from "../users-list-component/selected-user.service
 })
 
 export class DetailComponent {
-  readonly SELECTED_USER_SERVICE: SelectedUserService = inject(SelectedUserService);
+  readonly selectedUserService: SelectedUserService = inject(SelectedUserService);
 
   setUserDetails() {
-    const fullName: string = this.SELECTED_USER_SERVICE.userIsSelected
-      ? `${ this.SELECTED_USER_SERVICE.selectedUser!.name.firstname } ${ this.SELECTED_USER_SERVICE.selectedUser!.name.lastname }`
+    const fullName: string = this.selectedUserService.userIsSelected()
+      ? `${ this.selectedUserService.selectedUser()!.name.firstname } ${ this.selectedUserService.selectedUser()!.name.lastname }`
       : '';
-    const email: string = this.SELECTED_USER_SERVICE.userIsSelected
-      ? this.SELECTED_USER_SERVICE.selectedUser!.email
+    const email: string = this.selectedUserService.userIsSelected()
+      ? this.selectedUserService.selectedUser()!.email
       : '';
 
     return [fullName, email];
@@ -26,6 +26,6 @@ export class DetailComponent {
 
 
   hideUser() {
-    this.SELECTED_USER_SERVICE.setUser( null );
+    this.selectedUserService.selectedUser.set( null );
   }
 }
