@@ -1,4 +1,4 @@
-import {Component, computed, inject, Signal} from "@angular/core";
+import {Component, computed, inject, signal, Signal, WritableSignal} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {NgClass} from "@angular/common";
 import {UsersListService} from "./users-list.service";
@@ -16,10 +16,6 @@ import {SelectedUserService} from "./selected-user.service";
 export class UsersListComponent {
   readonly usersListService: UsersListService = inject(UsersListService);
   readonly SelectedUserService: SelectedUserService = inject(SelectedUserService);
-  readonly users: Signal<UserModel[]> = toSignal(
-    this.usersListService.getAll(),
-    {initialValue: []}
-  )
 
   toggleDetails( user: UserModel ) {
     if(this.SelectedUserService.userIsSelected === null || this.SelectedUserService.selectedUserId() !== user.id ){
@@ -28,14 +24,4 @@ export class UsersListComponent {
       this.SelectedUserService.selectedUser.set( null );
     }
   }
-
-  readonly VISIBLE_USERS: Signal<UserModel[]> = computed(() => {
-    return this.users()
-  });
-
-  sortOrder(): string {
-    return 'desc';
-  }
-
-
 }

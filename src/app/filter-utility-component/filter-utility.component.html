@@ -1,48 +1,42 @@
 <div class="py-1">
   <span>Sort by </span>
-  <button
-    id="email-toggle"
+  <button id="email-toggle"
     class="me-1"
-    (click)="sort('asc')"
+    (click)="setSortOption('email')"
     [ngClass]="{
               'btn': true,
-              'btn-dark': sortOrder() === 'asc',
-              'btn-outline-dark': sortOrder() === 'desc'
+              'btn-dark': usersListService.sortOptions().sortBy === 'email',
+              'btn-outline-dark': usersListService.sortOptions().sortBy === 'lastName'
             }"
   >Email
   </button>
-  <button
-    id="lastname-toggle"
+  <button id="lastname-toggle"
     class="me-1"
-    (click)="sort('asc')"
+    (click)="setSortOption('lastName')"
     [ngClass]="{
               'btn': true,
-              'btn-dark': sortOrder() === 'desc',
-              'btn-outline-dark': sortOrder() == 'asc'
+              'btn-dark': usersListService.sortOptions().sortBy === 'lastName',
+              'btn-outline-dark': usersListService.sortOptions().sortBy === 'email'
             }"
   >Lastname
   </button>
   <span>Order </span>
-  <button
-    id="asc-toggle"
-    class="me-1"
-    (click)="sort('asc')"
+  <button id="asc-toggle"
+    class="me-1 btn"
+    (click)="setSortOption('asc')"
     [ngClass]="{
-              'btn': true,
-              'btn-dark': sortOrder() === 'asc',
-              'btn-outline-dark': sortOrder() === 'desc'
-            }"
+      'btn-dark': usersListService.sortOptions().sortOrder === 'asc',
+      'btn-outline-dark': usersListService.sortOptions().sortOrder === 'desc'
+    }"
   >ASC
   </button>
-  <button
-    id="desc-toggle"
-    class="me-1"
-    (click)="sort('asc')"
+  <button id="desc-toggle"
+    class="me-1 btn"
+    (click)="setSortOption('desc')"
     [ngClass]="{
-              'btn': true,
-              'btn-dark': sortOrder() === 'desc',
-              'btn-outline-dark': sortOrder() == 'asc'
-            }"
+      'btn-dark': usersListService.sortOptions().sortOrder === 'desc',
+      'btn-outline-dark': usersListService.sortOptions().sortOrder === 'asc'
+    }"
   >DESC
   </button>
 </div>

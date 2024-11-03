@@ -1,7 +1,12 @@
-import {Component} from "@angular/core";
+import {Component, computed, inject, Signal, signal, WritableSignal} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {NgClass} from "@angular/common";
 import {DetailComponent} from "../detail-component/detail.component";
+import {UserModel} from "../users-list-component/user.model";
+import {UsersListService} from "../users-list-component/users-list.service";
+
+type SortOrder = 'asc' | 'desc';
+type SortBy = 'email' | 'lastName';
 
 @Component({
   selector: 'filter-utility',
@@ -11,9 +16,13 @@ import {DetailComponent} from "../detail-component/detail.component";
 })
 
 export class FilterUtilityComponent {
-  sort(asc: string) {}
+  readonly usersListService: UsersListService = inject(UsersListService);
 
-  sortOrder(): string {
-    return 'desc';
+  setSortOption( option: SortBy | SortOrder ): void {
+    this.usersListService.sortOptions.update( opt => {
+      return option === 'email' || option === 'lastName'
+        ? { ...opt, sortBy: option }
+        : { ...opt, sortOrder: option };
+    });
   }
 }
