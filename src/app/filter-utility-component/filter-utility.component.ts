@@ -1,8 +1,7 @@
-import {Component, computed, inject, Signal, signal, WritableSignal} from "@angular/core";
+import {Component, inject} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {NgClass} from "@angular/common";
 import {DetailComponent} from "../detail-component/detail.component";
-import {UserModel} from "../users-list-component/user.model";
 import {UsersListService} from "../users-list-component/users-list.service";
 
 type SortOrder = 'asc' | 'desc';

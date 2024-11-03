@@ -1,9 +1,8 @@
-import {Component, computed, inject, signal, Signal, WritableSignal} from "@angular/core";
+import {Component, inject} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {NgClass} from "@angular/common";
 import {UsersListService} from "./users-list.service";
 import {UserModel} from "./user.model";
-import {toSignal} from "@angular/core/rxjs-interop";
 import {SelectedUserService} from "./selected-user.service";
 
 @Component({
