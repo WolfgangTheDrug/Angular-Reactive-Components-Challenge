@@ -15,6 +15,7 @@ export class UsersListService {
   private readonly httpClient: HttpClient = inject(HttpClient);
   private readonly defaultSortOptions: SortOptions = { sortBy: 'email', sortOrder: 'asc' };
   readonly sortOptions: WritableSignal<SortOptions> = signal( this.defaultSortOptions );
+  readonly filterQuery: WritableSignal<string> = signal( '' );
 
   getAll(): Observable<UserModel[]> {
     return this.httpClient.get<UserModel[]>(this.apiUrl)
@@ -25,21 +26,26 @@ export class UsersListService {
     {initialValue: []}
   )
   readonly usersView: Signal<UserModel[]> = computed(() => {
-    return this.users().sort((a: UserModel, b: UserModel) => {
-      if ( this.sortOptions().sortBy === 'email' ) {
-        if ( this.sortOptions().sortOrder === 'asc' ) {
-          // emails asc
-          return a.email.localeCompare(b.email);
+    return this.users()
+      .sort((a: UserModel, b: UserModel) => {
+        if (this.sortOptions().sortBy === 'email') {
+          if (this.sortOptions().sortOrder === 'asc') {
+            // emails asc
+            return a.email.localeCompare(b.email);
+          }
+          // emails desc
+          return b.email.localeCompare(a.email);
         }
-        // emails desc
-        return b.email.localeCompare(a.email);
-      }
-      if ( this.sortOptions().sortOrder === 'asc' ) {
-        // lastName asc
-        return a.name.lastname.localeCompare(b.name.lastname);
-      }
-      // lastName desc
-      return b.name.lastname.localeCompare(a.name.lastname);
-    });
+        if (this.sortOptions().sortOrder === 'asc') {
+          // lastName asc
+          return a.name.lastname.localeCompare(b.name.lastname);
+        }
+        // lastName desc
+        return b.name.lastname.localeCompare(a.name.lastname);
+      })
+      .filter((a: UserModel) => {
+        const re: RegExp = new RegExp(String.raw`${this.filterQuery()}`, "g");
+        return re.test(a.email);
+      });
   });
 }

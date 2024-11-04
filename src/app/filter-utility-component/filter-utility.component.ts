@@ -24,4 +24,9 @@ export class FilterUtilityComponent {
         : { ...opt, sortOrder: option };
     });
   }
+
+  onChange($event: Event) {
+    const inputText: string = ( $event.target as HTMLInputElement ).value;
+    this.usersListService.filterQuery.set( inputText );
+  }
 }
